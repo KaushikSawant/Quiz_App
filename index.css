@@ -1,7 +1,7 @@
 *{margin: 0;
 box-sizing: border-box;}
 body{color: white;
-    background-color: rgb(255, 40, 72);
+    background-color: rgb(255, 153, 255);
     font-family: 'Nunito Sans', sans-serif;}
 
 .center{margin:15% auto ;
@@ -35,3 +35,8 @@ color: white;}
     margin: 15%;}
 
 .end h1{margin: 1em;}
+.rightAnswer{background-color: green;}
+.wrongAnswer{background-color: brown;}
+.end p{margin: 1em;}
+.end p:hover{cursor: pointer;}
+p h1 {border: 10px solid red;}

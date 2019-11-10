@@ -1,3 +1,4 @@
+var x;
 var i;
 var questions= [];
 var answer = [];
@@ -16,7 +17,7 @@ var fetchTest = fetch("https://opentdb.com/api.php?amount=5&category=21&difficul
             questions.push(value.question);
             answer.push(value.correct_answer);
             wrongAns.push(value.incorrect_answers);
-
+        
         });
     
     }
@@ -24,15 +25,21 @@ var fetchTest = fetch("https://opentdb.com/api.php?amount=5&category=21&difficul
 
     
 function getQuestion(){
+    document.querySelectorAll('.choices').forEach(el => el.classList.remove('rightAnswer','wrongAnswer'));
+    //document.querySelectorAll('.choices').forEach(el => el.classList.remove('wrongAnswer'));
     MAX_LENGTH = questions.length;
-
+    //update score
     document.getElementById('questionNumber').innerHTML = 'Question: ' + (counter+1) + '/' + MAX_LENGTH;
     document.getElementById('score').innerHTML = 'Score: ' + score;
 
-    if(counter===MAX_LENGTH){
+    if(counter === MAX_LENGTH){
+        var sendScore = score.toString();
+        localStorage.setItem("userScore",sendScore);
+
         //SET YOUR CURRENT SCORE IN LOCAL STORAGE
             /*SET YOUR CURRENT SCORE IN HIGH SCORE ARRAY STORED IN LOCAL STORAGE - IF APPLICABLE*/
         // NAVIGATE TO EXIT.HTML
+        window.location.replace("finalScore.html");
     }
     current_answer_number = Math.floor(Math.random() * 3) + 1;
  
@@ -46,23 +53,36 @@ function getQuestion(){
         document.getElementById('choice' + (i+1)).innerHTML = displayChoices[i];
     }
     counter++;
+    //display counter in question
 }
 
 var choiceClick = () => {
     //DETERMINE IF USER HAS SELECTED THE RIGHT ANSWER OR NOT 
         //FIRST GET THE ELEMENT/ANCHORTAG ID WHICH THE USER HAS CLICKED e.g. choice2
-        for(i = 0; i < 4; i++)
-        var selectBox = document.getElementById("choice" + (i+1));
-        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-        
+    
+    var selectedChoice = event.currentTarget.getAttribute('id');
+       if(selectedChoice === 'choice'+ (current_answer_number + 1))
+       {
+        score = score + scoreIncrement;    
+        document.getElementById(selectedChoice).classList.add('rightAnswer');
+        }  
+        else { 
+            document.getElementById(selectedChoice).classList.add('wrongAnswer');
+        }
+     
+       setTimeout(getQuestion,1000);
+    //    var x = event.curren0tTarget.getAttribute('id');---------------------------------------imp
+    //    console.log(x);
+       //choice right or wrong use Else and give color.
+       // .splice add                 === //
         //EXTRACT CHOICE NUMBER FROM THE ABOVE ANCHOR TAG ID e.g. choice2 ===> 2  // STORE IT IN TEMP VARIABLE
 
         //IF current_answer_number + 1 ===  temp //- IF YES - INCREMENT SCORE VARIABLE BY SCOREINCREMENT
-        getQuestion();
+        //getQuestion();
 
 }
 
-setTimeout(getQuestion,1000);
+setTimeout(getQuestion,2000);
 
 
 
