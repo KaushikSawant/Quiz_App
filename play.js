@@ -26,7 +26,7 @@ var fetchTest = fetch("https://opentdb.com/api.php?amount=5&category=21&difficul
     
 function getQuestion(){
     document.querySelectorAll('.choices').forEach(el => el.classList.remove('rightAnswer','wrongAnswer'));
-    //document.querySelectorAll('.choices').forEach(el => el.classList.remove('wrongAnswer'));
+    
     MAX_LENGTH = questions.length;
     //update score
     document.getElementById('questionNumber').innerHTML = 'Question: ' + (counter+1) + '/' + MAX_LENGTH;
@@ -36,9 +36,7 @@ function getQuestion(){
         var sendScore = score.toString();
         localStorage.setItem("userScore",sendScore);
 
-        //SET YOUR CURRENT SCORE IN LOCAL STORAGE
-            /*SET YOUR CURRENT SCORE IN HIGH SCORE ARRAY STORED IN LOCAL STORAGE - IF APPLICABLE*/
-        // NAVIGATE TO EXIT.HTML
+    
         window.location.replace("finalScore.html");
     }
     current_answer_number = Math.floor(Math.random() * 3) + 1;
@@ -71,14 +69,10 @@ var choiceClick = () => {
         }
      
        setTimeout(getQuestion,1000);
-    //    var x = event.curren0tTarget.getAttribute('id');---------------------------------------imp
-    //    console.log(x);
-       //choice right or wrong use Else and give color.
-       // .splice add                 === //
-        //EXTRACT CHOICE NUMBER FROM THE ABOVE ANCHOR TAG ID e.g. choice2 ===> 2  // STORE IT IN TEMP VARIABLE
 
-        //IF current_answer_number + 1 ===  temp //- IF YES - INCREMENT SCORE VARIABLE BY SCOREINCREMENT
-        //getQuestion();
+       //choice right or wrong use Else and give color.
+            
+
 
 }
 

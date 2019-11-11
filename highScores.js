@@ -8,5 +8,5 @@ else{
 
 latestScores.forEach((element,index)=>{
     document.getElementById('display').innerHTML = document.getElementById('display').innerHTML 
-    + '<p class="">' + element + '</p>';
+    + '<p class="output">' + element + '</p>';
 });
