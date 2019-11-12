@@ -25,6 +25,8 @@ var fetchTest = fetch("https://opentdb.com/api.php?amount=5&category=21&difficul
 
     
 function getQuestion(){
+    // var element = document.getElementById('mainDiv').innerHTML;
+    // element.classList.add("add");
     document.querySelectorAll('.choices').forEach(el => el.classList.remove('rightAnswer','wrongAnswer'));
     
     MAX_LENGTH = questions.length;
@@ -67,7 +69,7 @@ var choiceClick = () => {
         else { 
             document.getElementById(selectedChoice).classList.add('wrongAnswer');
         }
-     
+    
        setTimeout(getQuestion,1000);
 
        //choice right or wrong use Else and give color.
